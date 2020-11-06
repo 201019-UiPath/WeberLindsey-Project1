@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30621.155
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreUI", "StoreUI\StoreUI.csproj", "{3665F735-6EEA-4570-950F-D73249EDC33B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreLib", "StoreLib\StoreLib.csproj", "{C3AA1410-8352-4E22-A305-3D384EF1A7B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreLib", "StoreLib\StoreLib.csproj", "{C3AA1410-8352-4E22-A305-3D384EF1A7B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreDB", "StoreDB\StoreDB.csproj", "{C7B11ABF-18CB-459D-B4CA-D721F2205ED0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreDB", "StoreDB\StoreDB.csproj", "{C7B11ABF-18CB-459D-B4CA-D721F2205ED0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoreTest", "StoreTest\StoreTest.csproj", "{D1C51D7C-417D-4F4D-AC2F-E0E923F928E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreTest", "StoreTest\StoreTest.csproj", "{D1C51D7C-417D-4F4D-AC2F-E0E923F928E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StoreAPI", "StoreAPI\StoreAPI.csproj", "{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,22 +20,7 @@ Global
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Debug|x64.Build.0 = Debug|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Debug|x86.Build.0 = Debug|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Release|x64.ActiveCfg = Release|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Release|x64.Build.0 = Release|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Release|x86.ActiveCfg = Release|Any CPU
-		{3665F735-6EEA-4570-950F-D73249EDC33B}.Release|x86.Build.0 = Release|Any CPU
 		{C3AA1410-8352-4E22-A305-3D384EF1A7B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3AA1410-8352-4E22-A305-3D384EF1A7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3AA1410-8352-4E22-A305-3D384EF1A7B4}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -72,5 +57,23 @@ Global
 		{D1C51D7C-417D-4F4D-AC2F-E0E923F928E0}.Release|x64.Build.0 = Release|Any CPU
 		{D1C51D7C-417D-4F4D-AC2F-E0E923F928E0}.Release|x86.ActiveCfg = Release|Any CPU
 		{D1C51D7C-417D-4F4D-AC2F-E0E923F928E0}.Release|x86.Build.0 = Release|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Debug|x64.Build.0 = Debug|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Debug|x86.Build.0 = Debug|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Release|x64.ActiveCfg = Release|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Release|x64.Build.0 = Release|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Release|x86.ActiveCfg = Release|Any CPU
+		{75DF8CC6-6E56-4564-AA30-D5ADB28B46BE}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8393EE92-B52F-4A5C-AEE2-9705589171BA}
 	EndGlobalSection
 EndGlobal

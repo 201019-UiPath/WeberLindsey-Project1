@@ -17,7 +17,12 @@ namespace StoreDB
         public DbSet<LineItem> LineItems { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
+        public StoreContext() { }
+
+        public StoreContext(DbContextOptions<StoreContext> options) : base(options) { }
+
+
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             if(!(optionsBuilder.IsConfigured)) {
                 var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -27,7 +32,7 @@ namespace StoreDB
                 var connectionString = configuration.GetConnectionString("StoreDB");
                 optionsBuilder.UseNpgsql(connectionString);
             }
-        }
+        }*/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             var bookConverter = new EnumToStringConverter<Book.bookType>();

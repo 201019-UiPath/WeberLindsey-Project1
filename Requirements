@@ -1,48 +1,58 @@
-Repo Name : WeberLindsey-Project0
+Repo Name : WeberLindsey-Project1
 
 https://github.com/201019-UiPath/training-code/wiki/P0-Requirements
 
-P0 Requirements:
-    -> Due Wednesday Week 3 (Nov 4)
+P1 Requirements:
+    -> Due Monday Week 5 (Nov 16)
     
 Store App 
 
 Overview
 The store app is a software that helps customers purchase products from your business. Designed with functionality that would make virtual shopping much simpler!
 
-Functionality
+Functionality:
+- The customer should be able to sign up for an account
 - The customer should be able to place orders
 - The customer should be able to view their order history
 - The customer should be able to view location inventory
 - The customer should know how much of a product is remaining
 - The customer should be able to purchase multiple products
-- Locations should have records of order history
-- Order histories should have the option to be sorted by date (latest to oldest and vice versa) or cost (least expensive to most expensive)
+- The manager should be able to view a location’s order history
 - The manager should be able to replenish inventory
+- The manager should be able to add a new product to a location’s inventory
+- Order histories should have the option to be sorted by date (latest to oldest and vice versa) or cost (least expensive to most expensive)
 
-Models
+Models:
 - Customer
 - Location
 - Orders
 - Product
+Note: add as much models as you would need for your design
 
-Note
-Add as much models as you would need for your design
-
-Additional requirements
+Additional requirements:
 - Exception Handling
-- Input validation
-- Logging (to a file, no logging to the console)
-- At least 10 unit tests
+- Input validation (Client and Server side)
+- Logging
+- At least 20 unit tests
 - Data should be persisted, (no data should be hard coded)
-- You should use a DB to store data
+- You should use PostgreSQL DB
 - DB structure should be 3NF
 - Should have an ER Diagram
 - Code should have xml documentation
+- Front end should be separate from the backend server
+- Front end should be user friendly 
+- Backend service should be RESTful
 
-Tech Stack
-- C#
-- Xunit
-- PostgreSQL DB (or some other DB dialect)
-- EF Core
-- Serilog or Nlog (or any other logging frameworks)
+Tech Stack:
+C#
+PostgreSQL DB
+EF Core
+ASP.NET Core
+HTML
+CSS
+JS
+BootstrapJS
+ASP.NET MVC
+Xunit
+Serilog or Nlog
+
