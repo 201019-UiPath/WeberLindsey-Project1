@@ -1,42 +1,46 @@
 
 function SignIn() {
-    //TODO fix this
     let user = {};
-    user.username = document.querySelector('#username');
-    user.password = document.querySelector('#password');
+    user.username = document.querySelector('#username').value;
+    user.password = document.querySelector('#password').value;
 
     let xhr = new XMLHttpRequest();
-
+    
     xhr.onreadystatechange = function() {
         if(this.readyState == 4 && this.status > 199 && this.status < 300) {
             document.querySelector('#username').value = '';
             document.querySelector('#password').value = '';
             console.log('Success!');
 
-            if(user.type == 'customer') {
-                //If successful login and user.type == customer
-                window.location = "customer.html"
-            } else if(user.type == 'manager') {
-                //If successful login and user.type == manager
-                window.location = "manager.html"
-            } else {
-                console.log('foiled again');
-            }
+            fetch(`https://localhost:44360/api/user/get/${user.username}`)
+            .then(response => response.json())
+            .then(result => {              
+                sessionStorage.setItem('Username', result.username);
+                sessionStorage.setItem('UserId', result.id);
+                sessionStorage.setItem('UserType', result.type);
+                //UserType 0 == Customer
+                //UserType 1 == Manager
+
+                if(result.type == 0) {
+                    //If successful login and user.type == customer
+                    window.location = "../customers/customer.html"
+                } else if(result.type == 1) {
+                    //If successful login and user.type == manager
+                    window.location = "../managers/manager.html"
+                } else {
+                    console.log('foiled again');
+                }
+            });  
         }
-        else {
+        else if(this.status == 403) {
             alert('Invalid username or password');
         }
+
     };
 
     xhr.open("POST", 'https://localhost:44360/api/user/signin', true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(user));
-
-    // fetch(`https://localhost:44360/api/user/get/${username}`)
-    // .then(response => response.json())
-    // .then(result => {
-    //     console.log(result);
-    // });
 }
 
 
@@ -60,6 +64,13 @@ function SignUp() {
 
             window.location = "signIn.html";
         }
+        else if(this.status == 406) {
+            alert('Please provide a valid email address');
+        }
+        else if(this.status == 409) {
+            alert('Username already taken');
+        }
+        
     };
 
     xhr.open("POST", 'https://localhost:44360/api/user/signup', true);

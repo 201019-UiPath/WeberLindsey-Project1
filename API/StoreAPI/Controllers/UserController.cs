@@ -117,12 +117,12 @@ namespace StoreAPI.Controllers
 
                 if (signedInUser.password != user.password)
                 {
-                    throw new System.Exception();
+                    return StatusCode(403);
                 }
                 else
                 {
-                    return Ok();
-                    //return Ok(signedInUser);
+                    //return Ok();
+                    return Ok(signedInUser);
                 }                
             }
             catch (Exception)
@@ -142,12 +142,12 @@ namespace StoreAPI.Controllers
                 List<User> users = userService.GetAllUsers();
                 if (ValidationService.ValidUsername(user.username, users) == false)
                 {
-                    return BadRequest();
+                    return StatusCode(409);
                 }
 
                 if(ValidationService.ValidEmail(user.email) == false)
                 {
-                    return BadRequest();
+                    return StatusCode(406);
                 }
 
                 if(ValidationService.ValidName(user.name) == false)
