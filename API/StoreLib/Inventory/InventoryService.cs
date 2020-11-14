@@ -41,9 +41,9 @@ namespace StoreLib
             return item;
         }
 
-        public List<InventoryItem> GetAllInventoryItemsByLocationId(int id)
+        public List<InventoryItem> GetAllInventoryItemsByLocationId(int locationId)
         {
-            List<InventoryItem> items = repo.GetAllInventoryItemsByLocationId(id);
+            List<InventoryItem> items = repo.GetAllInventoryItemsByLocationId(locationId);
             return items;
         }
 

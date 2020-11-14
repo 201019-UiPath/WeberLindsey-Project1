@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StoreDB.Models;
@@ -24,6 +25,7 @@ namespace StoreAPI.Controllers
         [HttpPost("add")]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult AddInventoryItem(InventoryItem item)
         {
             try
@@ -40,6 +42,7 @@ namespace StoreAPI.Controllers
         [HttpPut("edit")]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult UpdateInventoryItem(InventoryItem item)
         {
             try
@@ -56,6 +59,7 @@ namespace StoreAPI.Controllers
         [HttpDelete("delete")]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult DeleteInventoryItem(InventoryItem item)
         {
             try
@@ -71,12 +75,12 @@ namespace StoreAPI.Controllers
 
         [HttpGet("get/{locationId}")]
         [Produces("application/json")]
-        public IActionResult GetAllInventoryItemsByLocationId(int id)
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetAllInventoryItemsByLocationId(int locationId)
         {
             try
             {
-                //TODO this is broken
-                return Ok(inventoryService.GetAllInventoryItemsByLocationId(id));
+                return Ok(inventoryService.GetAllInventoryItemsByLocationId(locationId));
             }
             catch (Exception)
             {
@@ -86,6 +90,7 @@ namespace StoreAPI.Controllers
 
         [HttpGet("get/{locationId}/{bookId}")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult GetItemByLocationIdBookId(int locationId, int bookId)
         {
             try

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StoreDB.Models;
@@ -69,8 +70,21 @@ namespace StoreAPI.Controllers
             }
         }
 
+        [HttpGet("get/{orderId}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetAllLineItemsByOrderId(int orderId)
+        {
+            try
+            {
+                return Ok(lineItemService.GetAllLineItemsByOrderId(orderId));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
 
-        //List<LineItem> GetAllLineItemsByOrderId(int id);
         //LineItem GetLineItemByOrderId(int id);
     }
 }

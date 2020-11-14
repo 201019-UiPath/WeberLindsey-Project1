@@ -21,5 +21,10 @@ namespace StoreDB
          List<Order> GetAllOrdersByUserIdPriceDesc(int id);
          
          Order GetOrderByDate(DateTime dateTime);
+
+        List<Order> GetAllOrdersByLocationIdDateAsc(int id);
+        List<Order> GetAllOrdersByLocationIdDateDesc(int id);
+        List<Order> GetAllOrdersByLocationIdPriceAsc(int id);
+        List<Order> GetAllOrdersByLocationIdPriceDesc(int id);
     }
 }

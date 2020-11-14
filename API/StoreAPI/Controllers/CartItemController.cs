@@ -32,8 +32,7 @@ namespace StoreAPI.Controllers
             try
             {
                 cartItemService.AddCartItem(item);
-                //return CreatedAtAction("AddCartItem", item);
-                return Ok();
+                return CreatedAtAction("AddCartItem", item);
             }
             catch (Exception)
             {
@@ -73,8 +72,22 @@ namespace StoreAPI.Controllers
             }
         }
 
-        
-        //List<CartItem> GetAllCartItemsByCartId(int id);
+        [HttpGet("get/{cartId}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetAllCartItemsByCartId(int cartId)
+        {
+            try
+            {
+                return Ok(cartItemService.GetAllCartItemsByCartId(cartId));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+
         //CartItem GetCartItemByCartId(int id);
         //CartItem GetCartItemById(int id);
 

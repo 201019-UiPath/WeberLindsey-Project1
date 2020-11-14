@@ -41,6 +41,8 @@ namespace StoreAPI.Controllers
             }
         }
 
+
+
         [HttpPut("edit")]
         [Consumes("application/json")]
         [Produces("application/json")]
@@ -131,11 +133,11 @@ namespace StoreAPI.Controllers
             }
         }
 
-        [HttpPost("signup")]
+        [HttpPost("signup/cust")]
         [Consumes("application/json")]
         [Produces("application/json")]
         [EnableCors("allowedOrigins")]
-        public IActionResult SignUp(User user)
+        public IActionResult SignUpCust(User user)
         {
             try
             {
@@ -156,6 +158,47 @@ namespace StoreAPI.Controllers
                 }
 
                 user.type = StoreDB.Models.User.userType.Customer;
+
+                userService.AddUser(user);
+
+                User createdUser = userService.GetUserByUsername(user.username);
+
+                Cart cart = new Cart();
+                cart.userId = createdUser.id;
+                cartService.AddCart(cart);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost("signup/mgr")]
+        [Consumes("application/json")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult SignUpMgr(User user)
+        {
+            try
+            {
+                List<User> users = userService.GetAllUsers();
+                if (ValidationService.ValidUsername(user.username, users) == false)
+                {
+                    return StatusCode(409);
+                }
+
+                if (ValidationService.ValidEmail(user.email) == false)
+                {
+                    return StatusCode(406);
+                }
+
+                if (ValidationService.ValidName(user.name) == false)
+                {
+                    return BadRequest();
+                }
+
+                user.type = StoreDB.Models.User.userType.Manager;
 
                 userService.AddUser(user);
 

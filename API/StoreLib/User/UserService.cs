@@ -49,24 +49,5 @@ namespace StoreLib
             repo.DeleteUser(user);
         }
 
-       
-        /*public void SignUp(User user)
-        {
-            List<User> users = GetAllUsers();
-            if(ValidationService.ValidUsername(user.username, users) == false)
-            {
-                return BadRequest();
-            }
-            user.type = User.userType.Customer;
-
-            AddUser(user);
-
-            User createdUser = GetUserByUsername(user.username);
-
-            Cart cart = new Cart();
-            cart.userId = createdUser.id;
-            cartService.AddCart(cart);
-        }*/
-
     }
 }

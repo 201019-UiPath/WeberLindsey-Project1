@@ -43,6 +43,7 @@ namespace StoreAPI.Controllers
         [HttpPut("edit")]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult UpdateBook(Book book)
         {
             try
@@ -59,6 +60,7 @@ namespace StoreAPI.Controllers
         [HttpDelete("delete")]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult DeleteBook(Book book)
         {
             try
@@ -74,6 +76,7 @@ namespace StoreAPI.Controllers
 
         [HttpGet("get")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult GetAllBooks()
         {
             try
@@ -85,8 +88,24 @@ namespace StoreAPI.Controllers
             }
         }
 
-        [HttpGet("get/{title}")]
+        [HttpGet("get/{id}")]
         [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetBookById(int id)
+        {
+            try
+            {
+                return Ok(bookService.GetBookById(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet("get/title/{title}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
         public IActionResult GetBookByTitle(string title) 
         { 
             try
@@ -98,11 +117,6 @@ namespace StoreAPI.Controllers
                 return NotFound();
             }
         }
-
-
-
-        //TODO this should be removed as it is not used List<Book> GetAllBooksAtLocationId(int id);
-        // public IActionResult GetBookById(int id) { }
 
     }
 }

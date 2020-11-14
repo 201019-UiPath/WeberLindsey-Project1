@@ -78,5 +78,22 @@ namespace StoreLib
             Order order = repo.GetOrderByDate(dateTime);
             return order;
         }
+
+        public List<Order> GetAllOrdersByLocationIdDateAsc(int id) {
+            List<Order> orders = repo.GetAllOrdersByLocationIdDateAsc(id);
+            return orders;
+        }
+        public List<Order> GetAllOrdersByLocationIdDateDesc(int id) {
+            List<Order> orders = repo.GetAllOrdersByLocationIdDateDesc(id);
+            return orders;
+        }
+        public List<Order> GetAllOrdersByLocationIdPriceAsc(int id) {
+            List<Order> orders = repo.GetAllOrdersByLocationIdPriceAsc(id);
+            return orders;
+        }
+        public List<Order> GetAllOrdersByLocationIdPriceDesc(int id) {
+            List<Order> orders = repo.GetAllOrdersByLocationIdPriceDesc(id);
+            return orders;
+        }
     }
 }

@@ -82,9 +82,23 @@ namespace StoreAPI.Controllers
             } 
         }
 
+        [HttpGet("get/{id}")]
+        [Produces("application/json")]
+        public IActionResult GetLocationById(int id)
+        {
+            try
+            {
+                return Ok(locationService.GetLocationById(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+
 
         //TODO not implemented because dont need this 
-        //Location GetLocationById(int id);
         // Location GetLocationByState(string state);
     }
 }

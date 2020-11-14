@@ -40,16 +40,6 @@ namespace StoreLib
             return true;  
         }
 
-        // public static Boolean ValidPassword(string password) {
-        //     if(Regex.IsMatch(password, "")) { //TODO edit this to check for letters numbers and spc char w/ at least 8 characters total
-        //         Console.WriteLine("Password must include upper and lowercase letters, numbers and a special character.");
-        //         Console.WriteLine("Password must also be at least 8 characters long.");
-        //         return false;
-        //     } else {
-        //         return true;
-        //     }
-        // }
-
         public static Boolean InvalidQuantity(int locQuantity, int userQuantity) {
             if(userQuantity > locQuantity) {
                 Console.WriteLine("Your current shopping location does not have that many of this item.");

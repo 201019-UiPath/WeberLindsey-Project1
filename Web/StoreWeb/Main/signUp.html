@@ -8,7 +8,7 @@
     <script src="index.js"></script>
     <title>Sign Up - CF Books</title>
 </head>
-<body>
+<body onload="DisplayLocationOptions()">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="index.html">Charlie Foxtrot Books</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,6 +21,7 @@
           </div>
         </div>
       </nav>
+
 
       <div class="container">
         <form action="">
@@ -40,7 +41,28 @@
               <label for="password">Password:</label>
               <input type="text" class="form-control" id="password" placeholder="Enter password">
             </div>
-            <!-- TODO add location selection here -->
+            <div class="form-group">
+              <label for="location">Select a Location:</label>
+              <div class="container">
+                <table class="table" id="locations">
+                    <thead>
+                        <th>ID</th>
+                        <th>Street</th>
+                        <th>City</th>
+                        <th>State</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td> 
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+              <input type="text" class="form-control" id="locationId" placeholder="Enter location Id">
+            </div>
             <input type="button" value="Sign Up" class="btn btn-dark" onclick="SignUp()">
         </form>
     </div>

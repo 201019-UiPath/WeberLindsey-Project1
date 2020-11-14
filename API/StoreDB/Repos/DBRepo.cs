@@ -3,6 +3,7 @@ using StoreDB.Models;
 using System.Linq;
 using StoreDB.Repos;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace StoreDB
 {
@@ -88,6 +89,7 @@ namespace StoreDB
             return (User) context.Users.Single(x => x.id == id);
         }
         public User GetUserByUsername(string username) {
+            //User user = context.Users.Include("Locations").Where(x => x.username == username).First();
             return (User) context.Users.Single(x => x.username == username);
         }
         public List<User> GetAllUsers() {
@@ -252,5 +254,20 @@ namespace StoreDB
         public Order GetOrderByDate(DateTime dateTime) {
             return (Order) context.Orders.Single(x => x.orderDate == dateTime);
         }
+
+        public List<Order> GetAllOrdersByLocationIdDateAsc(int id) {
+            return context.Orders.Where(x => x.locationId == id).OrderBy(x => x.orderDate).ToList();
+        }
+        public List<Order> GetAllOrdersByLocationIdDateDesc(int id) {
+            return context.Orders.Where(x => x.locationId == id).OrderByDescending(x => x.orderDate).ToList();
+        }
+        public List<Order> GetAllOrdersByLocationIdPriceAsc(int id) {
+            return context.Orders.Where(x => x.locationId == id).OrderBy(x => x.totalPrice).ToList();
+        }
+        public List<Order> GetAllOrdersByLocationIdPriceDesc(int id) {
+            return context.Orders.Where(x => x.locationId == id).OrderByDescending(x => x.totalPrice).ToList();
+        }
+
+
     }
 }

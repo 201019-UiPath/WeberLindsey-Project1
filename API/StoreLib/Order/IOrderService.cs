@@ -19,5 +19,10 @@ namespace StoreLib
         Order GetOrderByLocationId(int id);
         Order GetOrderByUserId(int id);
         void UpdateOrder(Order order);
+
+        List<Order> GetAllOrdersByLocationIdDateAsc(int id);
+        List<Order> GetAllOrdersByLocationIdDateDesc(int id);
+        List<Order> GetAllOrdersByLocationIdPriceAsc(int id);
+        List<Order> GetAllOrdersByLocationIdPriceDesc(int id);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StoreDB.Models;
@@ -69,8 +70,22 @@ namespace StoreAPI.Controllers
             }
         }
 
-        
-        //TODO this needs to be refactored probably Cart GetCartByUserId(int id);
+        [HttpGet("get/{userId}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetCartByUserId(int userId)
+        {
+            try
+            {
+                return Ok(cartService.GetCartByUserId(userId));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+
         //Cart GetCartById(int id);
         //TODO implemented but don't think it should be, doesn't work anyways void UpdateCart(Cart cart);
     }
