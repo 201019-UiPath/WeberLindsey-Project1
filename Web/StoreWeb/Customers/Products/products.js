@@ -9,7 +9,7 @@ const userLocation = async () => {
   let locationId = localStorage.getItem("UserLocationId");
   let location = await getLocationByLocationId(locationId);
   let locDisplay = document.createTextNode(
-    `Your current preferred location: ${location.city}, ${location.state}`
+    `Your current preferred location : ${location.city}, ${location.state}`
   );
   document.querySelector("#location").appendChild(locDisplay);
 };

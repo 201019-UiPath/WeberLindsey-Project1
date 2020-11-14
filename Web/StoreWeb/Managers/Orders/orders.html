@@ -9,7 +9,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../style.css" />
+    <link rel="stylesheet" href="../../Style/style.css" />
     <script src="orders.js"></script>
 
     <title>Orders - CF Books</title>
@@ -41,10 +41,9 @@
       </div>
     </nav>
 
-
-    <div class="form-group">
-      <label for="location">Select a Location:</label>
-      <div class="container">
+    <section>
+      <div class="container" style="margin-top: 40px">
+        <h1>Select a location:</h1>
         <table class="table" id="locations">
           <thead>
             <th>ID</th>
@@ -61,55 +60,56 @@
             </tr>
           </tbody>
         </table>
+
+        <input
+          type="text"
+          class="form-control"
+          id="locationId"
+          placeholder="Enter location Id"
+          style="margin-top: 40px"
+        />
+
+        <input
+          type="button"
+          value="Select"
+          class="btn btn-dark"
+          onclick="getAllOrdersAtLocation()"
+          style="margin-top: 40px"
+        />
       </div>
-      <input
-        type="text"
-        class="form-control"
-        id="locationId"
-        placeholder="Enter location Id"
-      />
-      <input
-        type="button"
-        value="Select"
-        class="btn btn-dark"
-        onclick="getAllOrdersAtLocation()"
-      />
-    </div>
-
-
-
-
-
-
-    <span>
-      <input
-        type="button"
-        value="Sort by Date Asc"
-        class="btn btn-dark"
-        onclick="sortOrdersByDateAsc()"
-      />
-      <input
-        type="button"
-        value="Sort by Date Desc"
-        class="btn btn-dark"
-        onclick="sortOrdersByDateDesc()"
-      />
-      <input
-        type="button"
-        value="Sort by Price Asc"
-        class="btn btn-dark"
-        onclick="sortOrdersByPriceAsc()"
-      />
-      <input
-        type="button"
-        value="Sort by Price Desc"
-        class="btn btn-dark"
-        onclick="sortOrdersByPriceDesc()"
-      />
-    </span>
+    </section>
 
     <section>
-      <div class="container">
+      <div class="container" style="margin-top: 100px">
+        <span>
+          <input
+            type="button"
+            value="Sort by Date Asc"
+            class="btn btn-dark"
+            onclick="sortOrdersByDateAsc()"
+          />
+          <input
+            type="button"
+            value="Sort by Date Desc"
+            class="btn btn-dark"
+            onclick="sortOrdersByDateDesc()"
+          />
+          <input
+            type="button"
+            value="Sort by Price Asc"
+            class="btn btn-dark"
+            onclick="sortOrdersByPriceAsc()"
+          />
+          <input
+            type="button"
+            value="Sort by Price Desc"
+            class="btn btn-dark"
+            onclick="sortOrdersByPriceDesc()"
+          />
+        </span>
+      </div>
+
+      <div class="container" style="margin-top: 40px; margin-bottom: 60px;">
         <table class="table" id="orders">
           <thead>
             <th>Location</th>
@@ -128,8 +128,5 @@
         </table>
       </div>
     </section>
-
-
-
   </body>
 </html>

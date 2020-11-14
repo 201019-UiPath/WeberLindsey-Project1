@@ -51,9 +51,8 @@ const createOrder = async () => {
   let order = {};
   order.userId = parseInt(localStorage.getItem("UserId"));
   order.locationId = parseInt(localStorage.getItem("UserLocationId"));
-  order.orderDate = 0;
-
-  console.log(order);
+  let date = new Date();
+  order.orderDate = date.toJSON();
 
   const response = await fetch(`https://localhost:44360/api/order/add`, {
     method: "POST",
@@ -69,53 +68,28 @@ const checkOut = async () => {
   let orderTotal = 0;
 
   for (let i = 0; i < cartItems.length; i++) {
-    let orderItem = {};
-    orderItem.orderId = order.id;
-    orderItem.bookId = cartItems[i].bookId;
-    orderItem.price = cartItems[i].price;
-    orderItem.quantity = cartItems[i].quantity;
-    
-    orderTotal += cartItems[i].price;
+    let lineItem = {};
+    lineItem.orderId = order.id;
+    lineItem.bookId = cartItems[i].bookId;
+    lineItem.quantity = cartItems[i].quantity;
 
-    const response = await fetch(`https://localhost:44360/api/orderItem/add`, {
+    let book = await getBookById(cartItems[i].bookId);
+    lineItem.price = book.price;
+
+    orderTotal += parseFloat(lineItem.price);
+
+    const response = await fetch(`https://localhost:44360/api/lineItem/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(orderItem),
+      body: JSON.stringify(lineItem),
     });
     const success = response.json();
     if (success) {
       alert("Your purchase has been made!");
       //TODO add function to update the order total
+      //TODO add function to delete cart items
     }
   }
 };
 
-//   const response = await fetch(`https://localhost:44360/api/order/add`, {
-//     method: "POST",
-//     headers: { "Content-Type": "application/json" },
-//     body: JSON.stringify(order),
-//   });
-//   const success = response.json();
-//   if (success) {
-//     for (let i = 0; i < cartItems.length; i++) {
-//       let orderItem = {};
-//       orderItem.orderId = success.id;
-//       orderItem.bookId = cartItems[i].bookId;
-//       orderItem.price = cartItems[i].price;
-//       orderItem.quantity = cartItems[i].quantity;
 
-//       const response = await fetch(
-//         `https://localhost:44360/api/orderItem/add`,
-//         {
-//           method: "POST",
-//           headers: { "Content-Type": "application/json" },
-//           body: JSON.stringify(orderItem),
-//         }
-//       );
-//       const success = response.json();
-//       if (success) {
-//         alert("Your purchase has been made!");
-//       }
-//     }
-//   }
-// };

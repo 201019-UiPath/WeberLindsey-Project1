@@ -10,7 +10,7 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="../../Style/style.css" />
     <script src="products.js"></script>
 
     <title>Products - CF Books</title>
@@ -42,53 +42,51 @@
       </div>
     </nav>
 
-    <div id="location"></div>
+      <div class="container">
+        <h1 id="location" style="margin-top: 20px"></h1>
+        <table class="table" id="books">
+          <thead>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Synopsis</th>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- TODO maybe hide the synopsis until the user selects a specific book and then it can go to a book details page w/ image of the book cover -->
-    <div class="container">
-      <table class="table" id="books">
-        <thead>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Synopsis</th>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <input
-        type="text"
-        class="form-control"
-        id="bookId"
-        placeholder="Enter Book ID"
-      />
-      <input
-        type="text"
-        class="form-control"
-        id="quantity"
-        placeholder="Enter Quantity"
-      />
-      <input
-        type="button"
-        value="Add to Cart"
-        class="btn btn-dark"
-        onclick="addToCart()"
-      />
-    </div>
-
-
-
+      <div class="container" style="margin-top: 40px;">
+        <input
+          type="text"
+          class="form-control"
+          id="bookId"
+          placeholder="Enter Book ID"
+        />
+        <input
+          type="text"
+          class="form-control"
+          id="quantity"
+          placeholder="Enter Quantity"
+          style="margin-top: 20px"
+        />
+        <input
+          type="button"
+          value="Add to Cart"
+          class="btn btn-dark"
+          onclick="addToCart()"
+          style="margin-top: 20px"
+        />
+      </div>
   </body>
 </html>
