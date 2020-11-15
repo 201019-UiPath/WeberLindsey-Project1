@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using StoreLib;
 using StoreDB.Models;
 using Microsoft.AspNetCore.Cors;
+using Serilog;
 
 namespace StoreAPI.Controllers
 {
@@ -130,15 +131,24 @@ namespace StoreAPI.Controllers
         {
             try
             {
+                //Create sign in logger
+                Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Debug()
+                .WriteTo.File("logs\\LoginAttempts.txt")
+                .CreateLogger();
+
                 User signedInUser = userService.GetUserByUsername(user.username);
 
                 if (signedInUser.password != user.password)
                 {
+                    //Log the sign in attempt
+                    Log.Information($"User {user.username} attempted to sign in unsuccessfully");
                     return StatusCode(403);
                 }
                 else
                 {
-                    //return Ok();
+                    //Log the sign in 
+                    Log.Information($"User {signedInUser.username} signed in successfully");
                     return Ok(signedInUser);
                 }                
             }

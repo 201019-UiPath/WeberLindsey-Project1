@@ -12,6 +12,7 @@
     />
     <link rel="stylesheet" href="../../Style/style.css" />
     <script src="inventory.js"></script>
+    <script src="../manager.js"></script>
 
     <title>Inventory - CF Books</title>
   </head>
@@ -38,6 +39,7 @@
           >
           <a class="nav-link" href="../Users/users.html">Users</a>
           <a class="nav-link" href="../Orders/orders.html">Orders</a>
+          <a class="nav-link" href="#" onclick="logOut()">Log Out</a>
         </div>
       </div>
     </nav>
@@ -153,10 +155,10 @@
     </section> -->
 
     <!-- Create a side menu to stick options like this in if time permits? -->
-    <div class="container" style="margin-top: 60px; margin-bottom: 60px;">
-    <a href="addinventory.html"
-      ><input type="button" value="Add New Book" class="btn btn-dark"
-    /></a>
+    <div class="container" style="margin-top: 60px; margin-bottom: 60px">
+      <a href="addinventory.html"
+        ><input type="button" value="Add New Book" class="btn btn-dark"
+      /></a>
     </div>
   </body>
 </html>

@@ -55,7 +55,7 @@ const getLocationByLocationId = async (locationId) => {
   return response.json();
 };
 
-//TODO fix this so it displays all the items for each order, not just the last
+//TODO these don't get orders by the selected locationId, just all existing orders
 const getAllOrdersForCurrentCustomer = async () => {
   const userId = localStorage.getItem("UserId");
   const orders = await getOrdersByUserId(userId);
@@ -64,11 +64,6 @@ const getAllOrdersForCurrentCustomer = async () => {
     .querySelectorAll("#orders tbody tr")
     .forEach((element) => element.remove());
   let table = document.querySelector("#orders tbody");
-
-  document
-      .querySelectorAll("#lineitems tbody tr")
-      .forEach((element) => element.remove());
-    let innerTable = document.querySelector("#lineitems tbody");
 
   for (let i = 0; i < orders.length; i++) {
     let row = table.insertRow(table.rows.length);
@@ -86,7 +81,17 @@ const getAllOrdersForCurrentCustomer = async () => {
 
     for (let x = 0; x < lineItems.length; x++) {
       let book = await getBookById(lineItems[x].bookId);
-      let innerRow = innerTable.insertRow(table.rows.length);
+      let innerHeaderRow = table.insertRow(table.rows.length);
+      let tCell = innerHeaderRow.insertCell(0);
+      let aCell = innerHeaderRow.insertCell(1);
+      let pCell = innerHeaderRow.insertCell(2);
+      let qCell = innerHeaderRow.insertCell(3);
+      tCell.innerHTML = "Title";
+      aCell.innerHTML = "Author";
+      pCell.innerHTML = "Price";
+      qCell.innerHTML = "Quantity";
+
+      let innerRow = table.insertRow(table.rows.length);
       let titleCell = innerRow.insertCell(0);
       let authorCell = innerRow.insertCell(1);
       let priceCell = innerRow.insertCell(2);
@@ -98,60 +103,6 @@ const getAllOrdersForCurrentCustomer = async () => {
     }
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-// const getAllOrdersForCurrentCustomer = async () => {
-//   const userId = localStorage.getItem("UserId");
-//   const orders = await getOrdersByUserId(userId);
-
-//   document
-//     .querySelectorAll("#orders tbody tr")
-//     .forEach((element) => element.remove());
-//   let table = document.querySelector("#orders tbody");
-
-//   for (let i = 0; i < orders.length; i++) {
-//     let row = table.insertRow(table.rows.length);
-//     let locationCell = row.insertCell(0);
-//     let dateCell = row.insertCell(1);
-//     let totalCell = row.insertCell(2);
-//     let itemsCell = row.insertCell(3);
-//     dateCell.innerHTML = orders[i].orderDate;
-//     totalCell.innerHTML = orders[i].totalPrice;
-
-//     let location = await getLocationByLocationId(orders[i].locationId);
-//     locationCell.innerHTML = `${location.city}, ${location.state}`;
-
-//     const lineItems = await getLineItemsByOrderId(orders[i].id);
-
-//     document
-//       .querySelectorAll("#lineitems tbody tr")
-//       .forEach((element) => element.remove());
-//     let innerTable = document.querySelector("#lineitems tbody");
-
-//     for (let x = 0; x < lineItems.length; x++) {
-//       let book = await getBookById(lineItems[x].bookId);
-//       let innerRow = innerTable.insertRow(innerTable.rows.length);
-//       let titleCell = innerRow.insertCell(0);
-//       let authorCell = innerRow.insertCell(1);
-//       let priceCell = innerRow.insertCell(2);
-//       let quantityCell = innerRow.insertCell(3);
-//       titleCell.innerHTML = book.title;
-//       authorCell.innerHTML = book.author;
-//       priceCell.innerHTML = book.price;
-//       quantityCell.innerHTML = lineItems[x].quantity;
-//     }
-//   }
-// };
 
 // Sort orders for locations by Date & Price
 const getOrdersByUserIdDateAsc = async () => {
@@ -186,6 +137,7 @@ const getOrdersByUserIdPriceDesc = async () => {
   return response.json();
 };
 
+//TODO update all of these to show the line items
 const sortOrdersByDateAsc = async () => {
   const orders = await getOrdersByUserIdDateAsc();
 
