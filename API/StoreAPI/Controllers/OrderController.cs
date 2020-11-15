@@ -73,6 +73,21 @@ namespace StoreAPI.Controllers
 
 
 
+        [HttpGet("get/{orderId}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetOrderById(int orderId)
+        {
+            try
+            {
+                return Ok(orderService.GetOrderById(orderId));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("get/location/{locationId}")]
         [Produces("application/json")]
         [EnableCors("allowedOrigins")]

@@ -82,33 +82,33 @@
     </section>
 
     <section>
-    <div class="container" style="margin-top: 100px;">
-      <span>
-        <input
-          type="button"
-          value="Sort by Date Asc"
-          class="btn btn-dark"
-          onclick="sortOrdersByDateAsc()"
-        />
-        <input
-          type="button"
-          value="Sort by Date Desc"
-          class="btn btn-dark"
-          onclick="sortOrdersByDateDesc()"
-        />
-        <input
-          type="button"
-          value="Sort by Price Asc"
-          class="btn btn-dark"
-          onclick="sortOrdersByPriceAsc()"
-        />
-        <input
-          type="button"
-          value="Sort by Price Desc"
-          class="btn btn-dark"
-          onclick="sortOrdersByPriceDesc()"
-        />
-      </span>
+      <div class="container" style="margin-top: 100px">
+        <span>
+          <input
+            type="button"
+            value="Sort by Date Asc"
+            class="btn btn-dark"
+            onclick="sortOrdersByDateAsc()"
+          />
+          <input
+            type="button"
+            value="Sort by Date Desc"
+            class="btn btn-dark"
+            onclick="sortOrdersByDateDesc()"
+          />
+          <input
+            type="button"
+            value="Sort by Price Asc"
+            class="btn btn-dark"
+            onclick="sortOrdersByPriceAsc()"
+          />
+          <input
+            type="button"
+            value="Sort by Price Desc"
+            class="btn btn-dark"
+            onclick="sortOrdersByPriceDesc()"
+          />
+        </span>
       </div>
 
       <!-- <section>
@@ -132,21 +132,20 @@
       </div>
     </section> -->
 
-        <div class="container" style="margin-top: 20px;">
-          <table class="table" id="orders">
-            <thead>
-              <th>Location</th>
-              <th>Date</th>
-              <th>Total</th>
-              <!-- <th>Items</th> -->
-            </thead>
-            <tbody>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-              <tr>
+      <div class="container" style="margin-top: 20px">
+        <table class="table" id="orders">
+          <thead>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Total</th>
+            <!-- <th>Items</th> -->
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>
                 <table class="table" id="lineitems">
                   <thead>
                     <th>Title</th>
@@ -155,18 +154,19 @@
                     <th>Quantity</th>
                   </thead>
                   <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
                   </tbody>
                 </table>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
-
-
   </body>
 </html>

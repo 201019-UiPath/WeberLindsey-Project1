@@ -1,8 +1,3 @@
-//currently signed in user
-// const username = sessionStorage.getItem("Username");
-// const userId = sessionStorage.getItem("UserId");
-// const userType = sessionStorage.getItem("UserType");
-
 function DisplayLocationOptions() {
   fetch(`https://localhost:44360/api/location/get`)
     .then((response) => response.json())
@@ -29,8 +24,6 @@ function DisplayLocationOptions() {
       }
     });
 }
-
-// TODO CHANGE ALL OF THESE TO GET ORDERS FOR THE CUSTOMER INSTEAD OF THE LOCATIONS
 
 // Get Orders and Line Items for each order for the current user
 const getOrdersByUserId = async (userId) => {
@@ -72,6 +65,11 @@ const getAllOrdersForCurrentCustomer = async () => {
     .forEach((element) => element.remove());
   let table = document.querySelector("#orders tbody");
 
+  document
+      .querySelectorAll("#lineitems tbody tr")
+      .forEach((element) => element.remove());
+    let innerTable = document.querySelector("#lineitems tbody");
+
   for (let i = 0; i < orders.length; i++) {
     let row = table.insertRow(table.rows.length);
     let locationCell = row.insertCell(0);
@@ -86,14 +84,9 @@ const getAllOrdersForCurrentCustomer = async () => {
 
     const lineItems = await getLineItemsByOrderId(orders[i].id);
 
-    document
-      .querySelectorAll("#lineitems tbody tr")
-      .forEach((element) => element.remove());
-    let innerTable = document.querySelector("#lineitems tbody");
-
     for (let x = 0; x < lineItems.length; x++) {
       let book = await getBookById(lineItems[x].bookId);
-      let innerRow = innerTable.insertRow(innerTable.rows.length);
+      let innerRow = innerTable.insertRow(table.rows.length);
       let titleCell = innerRow.insertCell(0);
       let authorCell = innerRow.insertCell(1);
       let priceCell = innerRow.insertCell(2);
@@ -106,9 +99,19 @@ const getAllOrdersForCurrentCustomer = async () => {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
 // const getAllOrdersForCurrentCustomer = async () => {
 //   const userId = localStorage.getItem("UserId");
-
 //   const orders = await getOrdersByUserId(userId);
 
 //   document
@@ -125,16 +128,28 @@ const getAllOrdersForCurrentCustomer = async () => {
 //     dateCell.innerHTML = orders[i].orderDate;
 //     totalCell.innerHTML = orders[i].totalPrice;
 
-//     const lineItems = await getLineItemsByOrderId(orders[i].id);
-//     // itemsCell.innerHTML = lineItems.length;
-
-//     let book = await getBookById(lineItems[i].bookId);
-//     itemsCell.innerHTML = book.title;
-//     authorCell.innerHTML = book.author;
-//     priceCell.innerHTML = book.price;
-
 //     let location = await getLocationByLocationId(orders[i].locationId);
 //     locationCell.innerHTML = `${location.city}, ${location.state}`;
+
+//     const lineItems = await getLineItemsByOrderId(orders[i].id);
+
+//     document
+//       .querySelectorAll("#lineitems tbody tr")
+//       .forEach((element) => element.remove());
+//     let innerTable = document.querySelector("#lineitems tbody");
+
+//     for (let x = 0; x < lineItems.length; x++) {
+//       let book = await getBookById(lineItems[x].bookId);
+//       let innerRow = innerTable.insertRow(innerTable.rows.length);
+//       let titleCell = innerRow.insertCell(0);
+//       let authorCell = innerRow.insertCell(1);
+//       let priceCell = innerRow.insertCell(2);
+//       let quantityCell = innerRow.insertCell(3);
+//       titleCell.innerHTML = book.title;
+//       authorCell.innerHTML = book.author;
+//       priceCell.innerHTML = book.price;
+//       quantityCell.innerHTML = lineItems[x].quantity;
+//     }
 //   }
 // };
 

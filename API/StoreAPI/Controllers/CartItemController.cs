@@ -87,6 +87,21 @@ namespace StoreAPI.Controllers
             }
         }
 
+        [HttpGet("get/id/{id}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetCartItemById(int id)
+        {
+            try
+            {
+                return Ok(cartItemService.GetCartItemById(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
 
         //CartItem GetCartItemByCartId(int id);
         //CartItem GetCartItemById(int id);

@@ -77,7 +77,6 @@ async function getAllBooksAtLocation() {
 }
 
 //TODO will need to adjust this to get all books not at locations as well or have just the products displayed with their location Id in the table?
-
 //Functions to create new book and add it to location inventory
 const getBookFromHTML = () => ({
   title: document.querySelector("#title").value,
@@ -163,6 +162,7 @@ const replenishBook = async () => {
   }
 };
 
+//TODO this breaks things
 const removeBook = async () => {
   let bookId = document.querySelector("#removeBook").value;
   let locationId = document.querySelector("#locationId").value;
@@ -170,7 +170,7 @@ const removeBook = async () => {
   const item = getInventoryItemByLocationIdBookId(locationId, bookId);
 
   const response = await fetch(`https://localhost:44360/api/inventory/delete`, {
-    method: "POST",
+    method: "DELETE",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(item),
   });

@@ -92,6 +92,21 @@ namespace StoreAPI.Controllers
             }
         }
 
+        [HttpGet("get/id/{id}")]
+        [Produces("application/json")]
+        [EnableCors("allowedOrigins")]
+        public IActionResult GetUserById(int id)
+        {
+            try
+            {
+                return Ok(userService.GetUserById(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
         [HttpGet("get/{username}")]
         [Produces("application/json")]
         [EnableCors("allowedOrigins")]
@@ -214,11 +229,6 @@ namespace StoreAPI.Controllers
                 return BadRequest();
             }
         }
-
-
-
-        //not implemented as its not used  
-        //User GetUserById(int id);
 
     }
 }
