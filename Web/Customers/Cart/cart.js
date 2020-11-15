@@ -156,7 +156,7 @@ const getCartItemById = async (id) => {
 };
 
 const removeFromCart = async () => {
-  let id = document.querySelector('#cartItemId').value;
+  let id = document.querySelector("#cartItemId").value;
   const cartItem = await getCartItemById(id);
 
   const response = await fetch(`https://localhost:44360/api/cartItem/delete`, {
@@ -164,5 +164,6 @@ const removeFromCart = async () => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(cartItem),
   });
-    displayUserCart();
-}
+  document.querySelector("#cartItemId").value = "";
+  displayUserCart();
+};

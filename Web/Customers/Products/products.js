@@ -28,6 +28,7 @@ const getBookById = async (bookId) => {
   return response.json();
 };
 
+
 async function getAllBooksForCurrentLocation() {
   let locationId = localStorage.getItem("UserLocationId");
   const inventory = await getInventoryByLocationId(locationId);
@@ -53,7 +54,7 @@ async function getAllBooksForCurrentLocation() {
     authorCell.innerHTML = book.author;
     priceCell.innerHTML = book.price;
   }
-}
+};
 
 const getUserCart = async () => {
   let userId = localStorage.getItem("UserId");
@@ -67,9 +68,15 @@ const getInventoryItemByLocationIdBookId = async (locationId, bookId) => {
   const response = await fetch(
     `https://localhost:44360/api/inventory/get/${locationId}/${bookId}`
   );
-  return response.json();
+  if (response.status == 500) {
+    alert("Not a valid selection");
+  } else {
+    return response.json();
+  }
 };
 
+//TODO add a check to see if the item already exists in the user's cart and 
+//update the quantity of that cart item instead of adding an entirely new one
 // Adds selected item to user's cart
 const addToCart = async () => {
   const userCart = await getUserCart();
@@ -78,25 +85,32 @@ const addToCart = async () => {
   cartItem.bookId = parseInt(document.querySelector("#bookId").value);
   cartItem.quantity = parseInt(document.querySelector("#quantity").value);
 
-  let locationId = localStorage.getItem("UserLocationId");
-  const item = await getInventoryItemByLocationIdBookId(
-    locationId,
-    cartItem.bookId
-  );
-
-  if (cartItem.quantity > item.quantity) {
-    alert("That's too many...");
+  if (parseInt(document.querySelector("#quantity").value) < 1) {
+    alert("You can't add 0 books to your cart. That's just silly.");
   } else {
-    const response = await fetch(`https://localhost:44360/api/cartItem/add/`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(cartItem),
-    });
-    const success = response.json();
-    if (success) {
-      alert("Item added to cart!");
-      document.querySelector("#bookId").value = "";
-      document.querySelector("#quantity").value = "";
+    let locationId = localStorage.getItem("UserLocationId");
+    const item = await getInventoryItemByLocationIdBookId(
+      locationId,
+      cartItem.bookId
+    );
+
+    if (cartItem.quantity > item.quantity) {
+      alert("That's too many...");
+    } else {
+      const response = await fetch(
+        `https://localhost:44360/api/cartItem/add/`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(cartItem),
+        }
+      );
+      const success = response.json();
+      if (success) {
+        alert("Item added to cart!");
+        document.querySelector("#bookId").value = "";
+        document.querySelector("#quantity").value = "";
+      }
     }
   }
 };

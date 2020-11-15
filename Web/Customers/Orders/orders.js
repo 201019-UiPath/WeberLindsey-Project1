@@ -27,7 +27,7 @@ function DisplayLocationOptions() {
 
 // Get Orders and Line Items for each order for the current user
 const getOrdersByUserId = async (userId) => {
-  let locationId = document.querySelector("#locationId").value;
+  // let locationId = document.querySelector("#locationId").value;
   const response = await fetch(
     `https://localhost:44360/api/order/get/user/${userId}`
   );
@@ -66,6 +66,16 @@ const getAllOrdersForCurrentCustomer = async () => {
   let table = document.querySelector("#orders tbody");
 
   for (let i = 0; i < orders.length; i++) {
+    let outerheaderrow = table.insertRow(table.rows.length);
+    let lCell = outerheaderrow.insertCell(0);
+    let dCell = outerheaderrow.insertCell(1);
+    let toCell = outerheaderrow.insertCell(2);
+    let itCell = outerheaderrow.insertCell(3);
+    lCell.innerHTML = "Location";
+    dCell.innerHTML = "Date";
+    toCell.innerHTML = "Total";
+    // itCell.innerHTML = "Items";
+    
     let row = table.insertRow(table.rows.length);
     let locationCell = row.insertCell(0);
     let dateCell = row.insertCell(1);
@@ -78,24 +88,27 @@ const getAllOrdersForCurrentCustomer = async () => {
     locationCell.innerHTML = `${location.city}, ${location.state}`;
 
     const lineItems = await getLineItemsByOrderId(orders[i].id);
+    // itemsCell.innerHTML = lineItems.length;
+
+    let innerHeaderRow = table.insertRow(table.rows.length);
+    let tCell = innerHeaderRow.insertCell(0);
+    let aCell = innerHeaderRow.insertCell(1);
+    let pCell = innerHeaderRow.insertCell(2);
+    let qCell = innerHeaderRow.insertCell(3);
+    tCell.innerHTML = "Title";
+    aCell.innerHTML = "Author";
+    pCell.innerHTML = "Price";
+    qCell.innerHTML = "Quantity";
 
     for (let x = 0; x < lineItems.length; x++) {
       let book = await getBookById(lineItems[x].bookId);
-      let innerHeaderRow = table.insertRow(table.rows.length);
-      let tCell = innerHeaderRow.insertCell(0);
-      let aCell = innerHeaderRow.insertCell(1);
-      let pCell = innerHeaderRow.insertCell(2);
-      let qCell = innerHeaderRow.insertCell(3);
-      tCell.innerHTML = "Title";
-      aCell.innerHTML = "Author";
-      pCell.innerHTML = "Price";
-      qCell.innerHTML = "Quantity";
+      let innercontentrow = table.insertRow(table.rows.length);
 
       let innerRow = table.insertRow(table.rows.length);
-      let titleCell = innerRow.insertCell(0);
-      let authorCell = innerRow.insertCell(1);
-      let priceCell = innerRow.insertCell(2);
-      let quantityCell = innerRow.insertCell(3);
+      let titleCell = innercontentrow.insertCell(0);
+      let authorCell = innercontentrow.insertCell(1);
+      let priceCell = innercontentrow.insertCell(2);
+      let quantityCell = innercontentrow.insertCell(3);
       titleCell.innerHTML = book.title;
       authorCell.innerHTML = book.author;
       priceCell.innerHTML = book.price;
@@ -137,7 +150,6 @@ const getOrdersByUserIdPriceDesc = async () => {
   return response.json();
 };
 
-//TODO update all of these to show the line items
 const sortOrdersByDateAsc = async () => {
   const orders = await getOrdersByUserIdDateAsc();
 
@@ -155,16 +167,34 @@ const sortOrdersByDateAsc = async () => {
     dateCell.innerHTML = orders[i].orderDate;
     totalCell.innerHTML = orders[i].totalPrice;
 
-    const lineItems = await getLineItemsByOrderId(orders[i].id);
-    itemsCell.innerHTML = lineItems.length;
-
-    // let book = await getBookById(lineItems[i].bookId);
-    // itemsCell.innerHTML = book.title;
-    // authorCell.innerHTML = book.author;
-    // priceCell.innerHTML = book.price;
-
     let location = await getLocationByLocationId(orders[i].locationId);
     locationCell.innerHTML = `${location.city}, ${location.state}`;
+
+    const lineItems = await getLineItemsByOrderId(orders[i].id);
+    // itemsCell.innerHTML = lineItems.length;
+
+    for (let x = 0; x < lineItems.length; x++) {
+      let book = await getBookById(lineItems[x].bookId);
+      let innerHeaderRow = table.insertRow(table.rows.length);
+      let tCell = innerHeaderRow.insertCell(0);
+      let aCell = innerHeaderRow.insertCell(1);
+      let pCell = innerHeaderRow.insertCell(2);
+      let qCell = innerHeaderRow.insertCell(3);
+      tCell.innerHTML = "Title";
+      aCell.innerHTML = "Author";
+      pCell.innerHTML = "Price";
+      qCell.innerHTML = "Quantity";
+
+      let innerRow = table.insertRow(table.rows.length);
+      let titleCell = innerRow.insertCell(0);
+      let authorCell = innerRow.insertCell(1);
+      let priceCell = innerRow.insertCell(2);
+      let quantityCell = innerRow.insertCell(3);
+      titleCell.innerHTML = book.title;
+      authorCell.innerHTML = book.author;
+      priceCell.innerHTML = book.price;
+      quantityCell.innerHTML = lineItems[x].quantity;
+    }
   }
 };
 
@@ -185,16 +215,34 @@ const sortOrdersByDateDesc = async () => {
     dateCell.innerHTML = orders[i].orderDate;
     totalCell.innerHTML = orders[i].totalPrice;
 
-    const lineItems = await getLineItemsByOrderId(orders[i].id);
-    itemsCell.innerHTML = lineItems.length;
-
-    // let book = await getBookById(lineItems[i].bookId);
-    // itemsCell.innerHTML = book.title;
-    // authorCell.innerHTML = book.author;
-    // priceCell.innerHTML = book.price;
-
     let location = await getLocationByLocationId(orders[i].locationId);
     locationCell.innerHTML = `${location.city}, ${location.state}`;
+
+    const lineItems = await getLineItemsByOrderId(orders[i].id);
+    // itemsCell.innerHTML = lineItems.length;
+
+    for (let x = 0; x < lineItems.length; x++) {
+      let book = await getBookById(lineItems[x].bookId);
+      let innerHeaderRow = table.insertRow(table.rows.length);
+      let tCell = innerHeaderRow.insertCell(0);
+      let aCell = innerHeaderRow.insertCell(1);
+      let pCell = innerHeaderRow.insertCell(2);
+      let qCell = innerHeaderRow.insertCell(3);
+      tCell.innerHTML = "Title";
+      aCell.innerHTML = "Author";
+      pCell.innerHTML = "Price";
+      qCell.innerHTML = "Quantity";
+
+      let innerRow = table.insertRow(table.rows.length);
+      let titleCell = innerRow.insertCell(0);
+      let authorCell = innerRow.insertCell(1);
+      let priceCell = innerRow.insertCell(2);
+      let quantityCell = innerRow.insertCell(3);
+      titleCell.innerHTML = book.title;
+      authorCell.innerHTML = book.author;
+      priceCell.innerHTML = book.price;
+      quantityCell.innerHTML = lineItems[x].quantity;
+    }
   }
 };
 
@@ -215,16 +263,34 @@ const sortOrdersByPriceAsc = async () => {
     dateCell.innerHTML = orders[i].orderDate;
     totalCell.innerHTML = orders[i].totalPrice;
 
-    const lineItems = await getLineItemsByOrderId(orders[i].id);
-    itemsCell.innerHTML = lineItems.length;
-
-    // let book = await getBookById(lineItems[i].bookId);
-    // itemsCell.innerHTML = book.title;
-    // authorCell.innerHTML = book.author;
-    // priceCell.innerHTML = book.price;
-
     let location = await getLocationByLocationId(orders[i].locationId);
     locationCell.innerHTML = `${location.city}, ${location.state}`;
+
+    const lineItems = await getLineItemsByOrderId(orders[i].id);
+    // itemsCell.innerHTML = lineItems.length;
+
+    for (let x = 0; x < lineItems.length; x++) {
+      let book = await getBookById(lineItems[x].bookId);
+      let innerHeaderRow = table.insertRow(table.rows.length);
+      let tCell = innerHeaderRow.insertCell(0);
+      let aCell = innerHeaderRow.insertCell(1);
+      let pCell = innerHeaderRow.insertCell(2);
+      let qCell = innerHeaderRow.insertCell(3);
+      tCell.innerHTML = "Title";
+      aCell.innerHTML = "Author";
+      pCell.innerHTML = "Price";
+      qCell.innerHTML = "Quantity";
+
+      let innerRow = table.insertRow(table.rows.length);
+      let titleCell = innerRow.insertCell(0);
+      let authorCell = innerRow.insertCell(1);
+      let priceCell = innerRow.insertCell(2);
+      let quantityCell = innerRow.insertCell(3);
+      titleCell.innerHTML = book.title;
+      authorCell.innerHTML = book.author;
+      priceCell.innerHTML = book.price;
+      quantityCell.innerHTML = lineItems[x].quantity;
+    }
   }
 };
 
@@ -245,15 +311,33 @@ const sortOrdersByPriceDesc = async () => {
     dateCell.innerHTML = orders[i].orderDate;
     totalCell.innerHTML = orders[i].totalPrice;
 
-    const lineItems = await getLineItemsByOrderId(orders[i].id);
-    itemsCell.innerHTML = lineItems.length;
-
-    // let book = await getBookById(lineItems[i].bookId);
-    // itemsCell.innerHTML = book.title;
-    // authorCell.innerHTML = book.author;
-    // priceCell.innerHTML = book.price;
-
     let location = await getLocationByLocationId(orders[i].locationId);
     locationCell.innerHTML = `${location.city}, ${location.state}`;
+
+    const lineItems = await getLineItemsByOrderId(orders[i].id);
+    // itemsCell.innerHTML = lineItems.length;
+
+    for (let x = 0; x < lineItems.length; x++) {
+      let book = await getBookById(lineItems[x].bookId);
+      let innerHeaderRow = table.insertRow(table.rows.length);
+      let tCell = innerHeaderRow.insertCell(0);
+      let aCell = innerHeaderRow.insertCell(1);
+      let pCell = innerHeaderRow.insertCell(2);
+      let qCell = innerHeaderRow.insertCell(3);
+      tCell.innerHTML = "Title";
+      aCell.innerHTML = "Author";
+      pCell.innerHTML = "Price";
+      qCell.innerHTML = "Quantity";
+
+      let innerRow = table.insertRow(table.rows.length);
+      let titleCell = innerRow.insertCell(0);
+      let authorCell = innerRow.insertCell(1);
+      let priceCell = innerRow.insertCell(2);
+      let quantityCell = innerRow.insertCell(3);
+      titleCell.innerHTML = book.title;
+      authorCell.innerHTML = book.author;
+      priceCell.innerHTML = book.price;
+      quantityCell.innerHTML = lineItems[x].quantity;
+    }
   }
 };

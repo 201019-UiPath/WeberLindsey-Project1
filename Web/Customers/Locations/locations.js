@@ -42,8 +42,12 @@ const updateUserLocation = async () => {
     body: JSON.stringify(user),
   });
   const success = response.json();
-  if (success) {
+  if (response.status == 400) {
+    alert("Not a valid selection");
+  }
+  if (response.status > 199 && response.status < 300) {
     alert("Location changed!");
     document.querySelector("#locationId").value = "";
+    localStorage.setItem('UserLocationId', user.locationId);
   }
 };

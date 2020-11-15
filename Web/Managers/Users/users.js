@@ -58,6 +58,8 @@ function AddManager() {
       alert("Please provide a valid email address");
     } else if (this.status == 409) {
       alert("Username already taken");
+    } else if (this.status == 400) {
+      alert('Please select a valid location');
     }
   };
 
